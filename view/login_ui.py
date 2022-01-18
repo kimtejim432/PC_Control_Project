@@ -6,6 +6,7 @@ win.geometry("500x400")
 win.title("GF-01")
 win.option_add("*Font","함초롬돋움 15 bold")
 win.configure(bg='#fff')
+win.resizable(width=False,height=False)
 
 lab = Label(win, text="Gang of Four", fg='#9ABAA3', bg='#fff', font="맑은고딕 28 bold") # 라벨 내 텍스트 지정
 lab.place(relx = 0.25, rely = 0.15)
