@@ -46,10 +46,14 @@ ent3.bind("<Button-1>", clear)
 ent3.place(relx = 0.42, rely = 0.54)
 
 btn1 = Button(win, font='함초롬돋움 12 bold',text='가입하기',width=13,relief=FLAT)
-def Email():
-    my_email = ent1.get()
+def info():
+    my_ID = ent1.get()
+    print(my_ID)
+    my_PW = ent2.get()
+    print(my_PW)
+    my_email = ent3.get()
     print(my_email)
-btn1.config(command = Email)
+btn1.config(command = info)
 btn1.configure(bg='#9ABAA3',fg='#fff')
 btn1.place(relx = 0.24, rely = 0.7)
 
