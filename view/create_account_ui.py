@@ -5,21 +5,21 @@ win = Tk() #창 생성
 
 win.geometry("500x400")
 win.title("GF-01")
-win.option_add("*Font","함초롬돋움 14 bold")
+win.option_add("*Font","HY헤드라인M 14")
 win.configure(bg='#fff')
 win.resizable(width=False,height=False)
 
-lab = Label(win, text="회원가입", fg='#9ABAA3', bg='#fff', font="맑은고딕 28 bold") # 라벨 내 텍스트 지정
-lab.place(relx = 0.35, rely = 0.12)
+lab = Label(win, text="회원가입", fg='#9ABAA3', bg='#fff', font="HY헤드라인M 28 bold") # 라벨 내 텍스트 지정
+lab.place(relx = 0.35, rely = 0.13)
 
 lab1 = Label(win, text=" ID ", bg='#9ABAA3', fg='#fff', width=6) # 라벨 내 텍스트 지정
-lab1.place(relx = 0.275, rely = 0.34)
+lab1.place(relx = 0.287, rely = 0.34)
 
 lab2 = Label(win, text=" PW ", bg='#9ABAA3', fg='#fff',width=6) # 라벨 내 텍스트 지정
-lab2.place(relx = 0.275, rely = 0.44)
+lab2.place(relx = 0.287, rely = 0.44)
 
 lab3 = Label(win, text=" E-mail ", bg='#9ABAA3', fg='#fff',width=6) # 라벨 내 텍스트 지정
-lab3.place(relx = 0.275, rely = 0.54)
+lab3.place(relx = 0.287, rely = 0.54)
 
 ent1 = Entry(win, font="함초롬돋움 13", width=16)
 ent1.insert(0, "ID")
