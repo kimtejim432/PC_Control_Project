@@ -57,7 +57,41 @@ btn1.config(command = info)
 btn1.configure(bg='#9ABAA3',fg='#fff')
 btn1.place(relx = 0.24, rely = 0.7)
 
-btn2 = Button(win, text='돌아가기', font='함초롬돋움 12 bold',width=13,relief=FLAT)
+def Close():
+    newWindow = Toplevel(win)
+    newWindow.title("GF-01")
+    newWindow.geometry("500x400")
+    newWindow.option_add("*Font","HY헤드라인M 14")
+    newWindow.configure(bg='#fff')
+    newWindow.resizable(width=False,height=False)
+    lab = Label(newWindow, text="ID/PW 찾기", fg='#9ABAA3', bg='#fff', font="HY헤드라인M 28 bold") # 라벨 내 텍스트 지정
+    lab.place(relx = 0.3, rely = 0.15)
+
+    lab1 = Label(newWindow , text=" E-mail ", bg='#9ABAA3', fg='#fff') # 라벨 내 텍스트 지정
+    lab1.place(relx = 0.275, rely = 0.42)
+
+    ent1 = Entry(newWindow, font="함초롬돋움 13", width=16)
+    ent1.insert(0, "E-mail")
+    def clear(event):
+        if ent1.get() == "E-mail":
+            ent1.delete(0,len(ent1.get()))
+    ent1.bind("<Button-1>", clear)
+    ent1.place(relx = 0.425, rely = 0.42)
+
+    btn1 = Button(newWindow, font='함초롬돋움 11 bold',text='E-mail로 ID/PW 받기',width=17,relief=FLAT)
+    def Email():
+        my_email = ent1.get() # email 입력창 내용
+        print(my_email)
+    btn1.config(command = Email)
+    btn1.configure(bg='#9ABAA3',fg='#fff')
+    btn1.place(relx = 0.165, rely = 0.65)
+
+    btn2 = Button(newWindow, text='돌아가기', font='함초롬돋움 11 bold',width=17,relief=FLAT,command=newWindow.destroy)
+    btn2.configure(bg='#EAEAEA',fg='black')
+    btn2.place(relx = 0.525, rely = 0.65)
+    
+
+btn2 = Button(win, text='돌아가기', font='함초롬돋움 12 bold',width=13,relief=FLAT,command=Close)
 btn2.configure(bg='#EAEAEA',fg='black')
 btn2.place(relx = 0.53, rely = 0.7)
 

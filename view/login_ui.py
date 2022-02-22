@@ -9,11 +9,11 @@ win.configure(bg='#fff')
 win.resizable(width=False,height=False)
 
 lab = Label(win, text="Gang of Four", fg='#9ABAA3', bg='#fff', font="HY헤드라인M 28 bold") # 라벨 내 텍스트 지정
-lab.place(relx = 0.25, rely = 0.16)
+lab.place(relx = 0.26, rely = 0.16)
 
 # ID 라벨
 lab1 = Label(win, text=" ID ", bg='#9ABAA3', fg='#fff') # 라벨 내 텍스트 지정
-lab1.place(relx = 0.285, rely = 0.39)
+lab1.place(relx = 0.295, rely = 0.39)
 
 # ID 입력창
 ent1 = Entry(win, font="함초롬돋움 13", width=18)
@@ -22,16 +22,16 @@ def clear(event):
     if ent1.get() == "아이디":
         ent1.delete(0,len(ent1.get()))
 ent1.bind("<Button-1>", clear)
-ent1.place(relx = 0.35, rely = 0.39)
+ent1.place(relx = 0.36, rely = 0.39)
 
 # Password 라벨
 lab2 = Label(win, text="PW", bg='#9ABAA3', fg='#fff')
-lab2.place(relx = 0.285, rely = 0.49)
+lab2.place(relx = 0.295, rely = 0.49)
 
 # Password 입력창
 ent2 = Entry(win, width=18,font="함초롬돋움 13")
 ent2.config(show = '*')
-ent2.place(relx = 0.35, rely = 0.49)
+ent2.place(relx = 0.36, rely = 0.49)
 
 btn1 = Button(win, text='로그인',font='함초롬돋움 12 bold',width=13,relief=FLAT)
 def login():
