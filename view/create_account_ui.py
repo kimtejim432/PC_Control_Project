@@ -1,6 +1,8 @@
 from enum import Flag
 from tkinter import *
 
+from cv2 import destroyWindow
+
 win = Tk() #창 생성
 
 win.geometry("500x400")
@@ -89,7 +91,6 @@ def Close():
     btn2 = Button(newWindow, text='돌아가기', font='함초롬돋움 11 bold',width=17,relief=FLAT,command=newWindow.destroy)
     btn2.configure(bg='#EAEAEA',fg='black')
     btn2.place(relx = 0.525, rely = 0.65)
-    
 
 btn2 = Button(win, text='돌아가기', font='함초롬돋움 12 bold',width=13,relief=FLAT,command=Close)
 btn2.configure(bg='#EAEAEA',fg='black')
