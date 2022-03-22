@@ -1,27 +1,19 @@
+import tkinter as tk
 from tkinter import *
 
-win = Tk() #창 생성
+class MainMenuUi(tk.Frame):
+    def __init__(self,app):
+        tk.Frame.__init__(self,app)
 
-win.geometry("500x400")
-win.title("GF-01")
-win.option_add("*Font","함초롬돋움 12 bold")
-win.configure(bg='#fff')
-win.resizable(width=False,height=False)
+        tk.Label(self, text="VoEyes", font="HY헤드라인M 28 bold").grid(row=1,column=2,pady=45)
 
-lab = Label(win, text="Gang of Four", fg='#9ABAA3', bg='#fff', font="HY헤드라인M 28 bold") # 라벨 내 텍스트 지정
-lab.place(relx = 0.25, rely = 0.15)
+        from focus_setting_ui import FocusSettingUi
+        tk.Button(self, text='초점 재설정',bg='#9ABAA3',width=15,relief=FLAT,command=lambda: app.switch_frame(FocusSettingUi)).grid(row=2,column=2,pady=10)
 
-btn1 = Button(win, text='초점 재설정',width=15,relief=FLAT)
-btn1.configure(bg='#9ABAA3',fg='#fff')
-btn1.place(relx = 0.35, rely = 0.45)
+        tk.Button(self, text='PC/랩탑 제어 실행',bg='#9ABAA3',width=15,relief=FLAT).grid(row=3,column=2,pady=10)
 
-btn2 = Button(win, text='PC/랩탑 제어 실행',width=15,relief=FLAT)
-btn2.configure(bg='#9ABAA3',fg='#fff')
-btn2.place(relx = 0.35, rely = 0.59)
+        from user_setting_ui import UserSettingUi
+        tk.Button(self, text='사용자 설정',bg='#9ABAA3',width=15,relief=FLAT,command=lambda: app.switch_frame(UserSettingUi)).grid(row=4,column=2,pady=10)
 
-btn3 = Button(win, text='사용자 설정',width=15,relief=FLAT)
-btn3.configure(bg='#9ABAA3',fg='#fff')
-btn3.place(relx = 0.35, rely = 0.73)
-
-
-win.mainloop() #창 실행
+        from system_setting_ui import SystemSettingUi
+        tk.Button(self, text='시스템 설정',bg='#9ABAA3',width=15,relief=FLAT,command=lambda: app.switch_frame(SystemSettingUi)).grid(row=5,column=2,pady=10)

@@ -1,23 +1,16 @@
+import tkinter as tk
 from tkinter import *
 
-win = Tk() #창 생성
+class SystemSettingUi(tk.Frame):
+    def __init__(self,app):
+        tk.Frame.__init__(self,app)
 
-win.geometry("500x400")
-win.title("GF-01")
-win.option_add("*Font","함초롬돋움 12 bold")
-win.configure(bg='#fff')
-win.resizable(width=False,height=False)
+        tk.Label(self  , text="시스템 설정", font="HY헤드라인M 28 bold").grid(row=1,column=2,pady=50)
 
-lab = Label(win, text="설정", fg='#9ABAA3', bg='#fff', font="HY헤드라인M 28 bold") # 라벨 내 텍스트 지정
-lab.place(relx = 0.41, rely = 0.17)
+        from login_ui import LoginUi
+        tk.Button(self, text='로그아웃',bg='#9ABAA3',width=15,relief=FLAT,command=lambda: app.switch_frame(LoginUi)).grid(row=2,column=2,pady=15)
 
-btn1 = Button(win, text='로그아웃',width=15,relief=FLAT)
-btn1.configure(bg='#9ABAA3',fg='#fff')
-btn1.place(relx = 0.347, rely = 0.51)
-
-btn2 = Button(win, text='회원탈퇴',width=15,relief=FLAT)
-btn2.configure(bg='#9ABAA3',fg='#fff')
-btn2.place(relx = 0.347, rely = 0.65)
-
-
-win.mainloop() #창 실행
+        tk.Button(self, text='회원탈퇴',bg='#9ABAA3',width=15,relief=FLAT,command=lambda: app.switch_frame(LoginUi)).grid(row=3,column=2,pady=15)
+        
+        from main_menu_ui import MainMenuUi
+        tk.Button(self, text='돌아가기',bg='#9ABAA3',width=15,relief=FLAT,command=lambda: app.switch_frame(MainMenuUi)).grid(row=4,column=2,pady=15)

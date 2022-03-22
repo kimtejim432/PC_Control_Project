@@ -1,37 +1,18 @@
 from tkinter import *
+import tkinter as tk
 
-win = Tk() #창 생성
+class FindAccountUi(tk.Frame) :
+    def __init__(self, app):
+        tk.Frame.__init__(self,app)
 
-win.geometry("500x400")
-win.title("GF-01")
-win.option_add("*Font","HY헤드라인M 14")
-win.configure(bg='#fff')
-win.resizable(width=False,height=False)
+        tk.Label(self, text="ID/PW 찾기",  font="HY헤드라인M 28 bold").grid(row=1,column=1,columnspan=4,pady=50)
+        tk.Label(self, text=" E-mail ",bg="#9ABAA3").grid(row=2,column=1,sticky="e",pady=30)
+        tk.Entry(self, font="함초롬돋움 12", width=18).grid(row=2,column=2,columnspan=2)
 
-lab = Label(win, text="ID/PW 찾기", fg='#9ABAA3', bg='#fff', font="HY헤드라인M 28 bold") # 라벨 내 텍스트 지정
-lab.place(relx = 0.3, rely = 0.15)
+        tk.Button(self, font='함초롬돋움 11 bold',bg="#9ABAA3",text='E-mail로 ID/PW 받기',width=17,relief=FLAT).grid(row=3,column=1,pady=30,padx=20,columnspan=2,sticky="w")
 
-lab1 = Label(win, text=" E-mail ", bg='#9ABAA3', fg='#fff') # 라벨 내 텍스트 지정
-lab1.place(relx = 0.275, rely = 0.42)
 
-ent1 = Entry(win, font="함초롬돋움 13", width=16)
-ent1.insert(0, "E-mail")
-def clear(event):
-    if ent1.get() == "E-mail":
-        ent1.delete(0,len(ent1.get()))
-ent1.bind("<Button-1>", clear)
-ent1.place(relx = 0.425, rely = 0.42)
+        from login_ui import LoginUi
+        tk.Button(self, text="돌아가기",bg='#EAEAEA', font='함초롬돋움 11 bold',width=17,relief=FLAT,command=lambda: app.switch_frame(LoginUi)).grid(row=3,column=3,padx=20,columnspan=2,sticky="e")
 
-btn1 = Button(win, font='함초롬돋움 11 bold',text='E-mail로 ID/PW 받기',width=17,relief=FLAT)
-def Email():
-    my_email = ent1.get() # email 입력창 내용
-    print(my_email)
-btn1.config(command = Email)
-btn1.configure(bg='#9ABAA3',fg='#fff')
-btn1.place(relx = 0.165, rely = 0.65)
-
-btn2 = Button(win, text='돌아가기', font='함초롬돋움 11 bold',width=17,relief=FLAT)
-btn2.configure(bg='#EAEAEA',fg='black')
-btn2.place(relx = 0.525, rely = 0.65)
-
-win.mainloop() #창 실행
+        

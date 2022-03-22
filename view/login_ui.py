@@ -1,54 +1,44 @@
 from tkinter import *
+import tkinter as tk
+from find_account_ui import FindAccountUi
+from create_account_ui import CreateAccountUi
+from main_menu_ui import MainMenuUi
 
-win = Tk() #창 생성
+class SampleApp(tk.Tk):
+    def __init__(self):
+        tk.Tk.__init__(self)
+        self._frame = None
+        self.switch_frame(LoginUi)
 
-win.geometry("500x400")
-win.title("GF-01")
-win.option_add("*Font","HY헤드라인M 14")
-win.configure(bg='#fff')
-win.resizable(width=False,height=False)
+    def switch_frame(self, frame_class):
+        new_frame = frame_class(self)
+        if self._frame is not None:
+            self._frame.destroy()
+        self._frame = new_frame
+        self._frame.pack()
 
-lab = Label(win, text="Gang of Four", fg='#9ABAA3', bg='#fff', font="HY헤드라인M 28 bold") # 라벨 내 텍스트 지정
-lab.place(relx = 0.26, rely = 0.16)
+class LoginUi(tk.Frame):
+    def __init__(self, app):
+        tk.Frame.__init__(self,app)
+        tk.Label(self, text="VoEyes", font="HY헤드라인M 28 bold").grid(row=1,column=6,pady=45)
+        tk.Label(self, text=" ID ",font="HY헤드라인M 14", bg='#9ABAA3').grid(row=3,column=5,sticky="e",pady=13)
+        tk.Label(self, text="PW",font="HY헤드라인M 14", bg='#9ABAA3').grid(row=4,column=5,sticky="e",pady=13)
 
-# ID 라벨
-lab1 = Label(win, text=" ID ", bg='#9ABAA3', fg='#fff') # 라벨 내 텍스트 지정
-lab1.place(relx = 0.295, rely = 0.39)
+        tk.Entry(self, font="함초롬돋움 12", width=18).grid(row=3,column=6)
+        
+        tk.Entry(self, width=18,font="함초롬돋움 12").grid(row=4,column=6)
 
-# ID 입력창
-ent1 = Entry(win, font="함초롬돋움 13", width=18)
-ent1.insert(0, "아이디")
-def clear(event):
-    if ent1.get() == "아이디":
-        ent1.delete(0,len(ent1.get()))
-ent1.bind("<Button-1>", clear)
-ent1.place(relx = 0.36, rely = 0.39)
+        tk.Button(self, text='로그인',font='함초롬돋움 12 bold',bg="#9ABAA3",width=13,relief=FLAT,command=lambda: app.switch_frame(MainMenuUi)).grid(row=10,column=6,pady=30)
 
-# Password 라벨
-lab2 = Label(win, text="PW", bg='#9ABAA3', fg='#fff')
-lab2.place(relx = 0.295, rely = 0.49)
+        tk.Button(self, text='회원가입', font='함초롬돋움 10 underline', width=10,relief=FLAT,command=lambda: app.switch_frame(CreateAccountUi)).grid(row=15,column=5,padx=30,pady=20)
+        
+        tk.Button(self, text='ID/PW 찾기', font='함초롬돋움 10 underline',width=10,relief=FLAT,command=lambda: app.switch_frame(FindAccountUi)).grid(row=15,column=7,padx=30,pady=20)
 
-# Password 입력창
-ent2 = Entry(win, width=18,font="함초롬돋움 13")
-ent2.config(show = '*')
-ent2.place(relx = 0.36, rely = 0.49)
-
-btn1 = Button(win, text='로그인',font='함초롬돋움 12 bold',width=13,relief=FLAT)
-def login():
-    my_id = ent1.get() # ID 입력창 내용
-    my_pw = ent2.get() # Password 입력창 내용
-    print(my_id, my_pw)
-btn1.config(command = login)
-btn1.configure(bg='#9ABAA3',fg='#fff')
-btn1.place(relx = 0.379, rely = 0.65)
-
-btn2 = Button(win, text='회원가입', font='함초롬돋움 10 underline', width=10,relief=FLAT)
-btn2.configure(bg='#fff',fg='black')
-btn2.place(relx = 0.33, rely = 0.77)
-
-btn3 = Button(win, text='ID/PW 찾기', font='함초롬돋움 10 underline',width=10,relief=FLAT)
-btn3.configure(bg='#fff',fg='black')
-btn3.place(relx = 0.49, rely = 0.77)
-
-
-win.mainloop() #창 실행
+if __name__ == "__main__":
+    app = SampleApp()
+    app.geometry("500x400")
+    app.title("VoEyes")
+    app.option_add("*Font","HY헤드라인M 14")
+    
+    app.resizable(width=False,height=False)
+    app.mainloop()

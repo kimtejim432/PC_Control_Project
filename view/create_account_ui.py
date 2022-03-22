@@ -1,65 +1,24 @@
-from enum import Flag
 from tkinter import *
+import tkinter as tk
 
-class create:
-    win = Tk() #창 생성
+class CreateAccountUi(tk.Frame):
+    def __init__(self,app):
+        tk.Frame.__init__(self,app)
 
-    win.geometry("500x400")
-    win.title("GF-01")
-    win.option_add("*Font","HY헤드라인M 14")
-    win.configure(bg='#fff')
-    win.resizable(width=False,height=False)
+        tk.Label(self, text="회원가입", font="HY헤드라인M 28 bold").grid(row=1,column=1,columnspan=3,pady=50)
 
-    lab = Label(win, text="회원가입", fg='#9ABAA3', bg='#fff', font="HY헤드라인M 28 bold") # 라벨 내 텍스트 지정
-    lab.place(relx = 0.35, rely = 0.13)
+        tk.Label(self, text=" ID ", bg='#9ABAA3', width=10).grid(row=3,column=2,pady=10,sticky="e")
 
-    lab1 = Label(win, text=" ID ", bg='#9ABAA3', fg='#fff', width=6) # 라벨 내 텍스트 지정
-    lab1.place(relx = 0.287, rely = 0.34)
+        tk.Label(self, text=" PW ", bg='#9ABAA3',width=10).grid(row=4,column=2,pady=13,sticky="e")
 
-    lab2 = Label(win, text=" PW ", bg='#9ABAA3', fg='#fff',width=6) # 라벨 내 텍스트 지정
-    lab2.place(relx = 0.287, rely = 0.44)
+        tk.Label(self, text=" E-mail ", bg='#9ABAA3',width=10).grid(row=5,column=2,pady=13,sticky="e")
 
-    lab3 = Label(win, text=" E-mail ", bg='#9ABAA3', fg='#fff',width=6) # 라벨 내 텍스트 지정
-    lab3.place(relx = 0.287, rely = 0.54)
+        tk.Entry(self, font="함초롬돋움 12", width=16).grid(row=3,column=3,sticky="w")
 
-    ent1 = Entry(win, font="함초롬돋움 13", width=16)
-    ent1.insert(0, "ID")
-    def clear(event):
-        if ent1.get() == "ID":
-            ent1.delete(0,len(ent1.get()))
-    ent1.bind("<Button-1>", clear)
-    ent1.place(relx = 0.42, rely = 0.34)
+        tk.Entry(self, font="함초롬돋움 12", width=16).grid(row=4,column=3,sticky="w")
 
-    ent2 = Entry(win, font="함초롬돋움 13", width=16)
-    ent2.insert(0, "PW")
-    def clear(event):
-        if ent2.get() == "PW":
-            ent2.delete(0,len(ent2.get()))
-    ent2.bind("<Button-1>", clear)
-    ent2.place(relx = 0.42, rely = 0.44)
+        tk.Entry(self, font="함초롬돋움 12", width=16).grid(row=5,column=3,sticky="w")
 
-    ent3 = Entry(win, font="함초롬돋움 13", width=16)
-    ent3.insert(0, "E-mail")
-    def clear(event):
-        if ent3.get() == "E-mail":
-            ent3.delete(0,len(ent3.get()))
-    ent3.bind("<Button-1>", clear)
-    ent3.place(relx = 0.42, rely = 0.54)
-
-    btn1 = Button(win, font='함초롬돋움 12 bold',text='가입하기',width=13,relief=FLAT)
-    def info():
-        my_ID = ent1.get()
-        print(my_ID)
-        my_PW = ent2.get()
-        print(my_PW)
-        my_email = ent3.get()
-        print(my_email)
-    btn1.config(command = info)
-    btn1.configure(bg='#9ABAA3',fg='#fff')
-    btn1.place(relx = 0.24, rely = 0.7)
-
-    btn2 = Button(win, text='돌아가기', font='함초롬돋움 12 bold',width=13,relief=FLAT)
-    btn2.configure(bg='#EAEAEA',fg='black')
-    btn2.place(relx = 0.53, rely = 0.7)
-
-    win.mainloop() #창 실행
+        tk.Button(self, font='함초롬돋움 12 bold',text='가입하기',bg="#9ABAA3",width=13,relief=FLAT).grid(row=10,column=2,padx=20,pady=40)
+        from login_ui import LoginUi
+        tk.Button(self, text='돌아가기',bg='#EAEAEA', font='함초롬돋움 12 bold',width=13,relief=FLAT,command=lambda: app.switch_frame(LoginUi)).grid(row=10,column=3,padx=30,pady=40)
