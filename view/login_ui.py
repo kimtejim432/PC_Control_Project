@@ -2,7 +2,7 @@ from tkinter import *
 import tkinter as tk
 from find_account_ui import FindAccountUi
 from create_account_ui import CreateAccountUi
-from main_menu_ui import MainMenuUi
+from focus_setting_ui import FocusSettingUi
 
 class SampleApp(tk.Tk):
     def __init__(self):
@@ -28,7 +28,7 @@ class LoginUi(tk.Frame):
         
         tk.Entry(self, width=18,font="함초롬돋움 12").grid(row=4,column=6)
 
-        tk.Button(self, text='로그인',font='함초롬돋움 12 bold',bg="#9ABAA3",width=13,relief=FLAT,command=lambda: app.switch_frame(MainMenuUi)).grid(row=10,column=6,pady=30)
+        tk.Button(self, text='로그인',font='함초롬돋움 12 bold',bg="#9ABAA3",width=13,relief=FLAT,command=lambda: app.switch_frame(FocusSettingUi)).grid(row=10,column=6,pady=30)
 
         tk.Button(self, text='회원가입', font='함초롬돋움 10 underline', width=10,relief=FLAT,command=lambda: app.switch_frame(CreateAccountUi)).grid(row=15,column=5,padx=30,pady=20)
         
@@ -42,3 +42,5 @@ if __name__ == "__main__":
     
     app.resizable(width=False,height=False)
     app.mainloop()
+
+    
