@@ -24,15 +24,21 @@ class LoginUi(tk.Frame):
         tk.Label(self, text=" ID ",font="HY헤드라인M 14", bg='#9ABAA3').grid(row=3,column=5,sticky="e",pady=13)
         tk.Label(self, text="PW",font="HY헤드라인M 14", bg='#9ABAA3').grid(row=4,column=5,sticky="e",pady=13)
 
-        tk.Entry(self, font="함초롬돋움 12", width=18).grid(row=3,column=6)
-        
-        tk.Entry(self, width=18,font="함초롬돋움 12").grid(row=4,column=6)
+        e1 = tk.Entry(self, font="함초롬돋움 12", width=18)
+        e1.grid(row=3,column=6)
 
-        tk.Button(self, text='로그인',font='함초롬돋움 12 bold',bg="#9ABAA3",width=13,relief=FLAT,command=lambda: app.switch_frame(FocusSettingUi)).grid(row=10,column=6,pady=30)
+        e2 = tk.Entry(self, width=18,font="함초롬돋움 12",show="*")
+        e2.grid(row=4,column=6)
+
+        tk.Button(self, text='로그인',font='함초롬돋움 12 bold',bg="#9ABAA3",width=13,relief=FLAT,command=lambda: print_fields()).grid(row=10,column=6,pady=30)
 
         tk.Button(self, text='회원가입', font='함초롬돋움 10 underline', width=10,relief=FLAT,command=lambda: app.switch_frame(CreateAccountUi)).grid(row=15,column=5,padx=30,pady=20)
         
         tk.Button(self, text='ID/PW 찾기', font='함초롬돋움 10 underline',width=10,relief=FLAT,command=lambda: app.switch_frame(FindAccountUi)).grid(row=15,column=7,padx=30,pady=20)
+
+        def print_fields():
+            print("ID : %s\nPW : %s" % (e1.get(),e2.get()))
+            app.switch_frame(FocusSettingUi)
 
 if __name__ == "__main__":
     app = SampleApp()

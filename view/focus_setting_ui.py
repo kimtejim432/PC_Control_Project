@@ -19,7 +19,8 @@ class FocusSettingUi(tk.Frame):
         else :
             string = "(적당한 문구)"
     
-        tk.Label(self, text=string, font="HY헤드라인M 15").grid(row=2,column=1,columnspan=2,pady=50,sticky="s")
+        L = tk.Label(self, text=string, font="HY헤드라인M 15")
+        L.grid(row=2,column=1,columnspan=2,pady=50,sticky="s")
 
         tk.Button(self, font='함초롬돋움 11 bold',bg='#9ABAA3',text='예',width=15,relief=FLAT,command=lambda: caliMainMove()).grid(row=4,column=1,pady=45,padx=10)
 
