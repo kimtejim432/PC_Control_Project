@@ -1,5 +1,6 @@
 from multiprocessing import Value
 import tkinter as tk
+import tkinter.ttk as ttk
 from tkinter import *
 
 class UserSettingUi(tk.Frame):
@@ -22,15 +23,19 @@ class UserSettingUi(tk.Frame):
         tk.Label(self, text="X값", font="HY헤드라인M 12").grid(row=3,column=6)
         tk.Label(self, text="Y값", font="HY헤드라인M 12").grid(row=3,column=7)
 
-        SpinboxX =tk.Spinbox(self, width=5, from_ = -20, to = 20, justify=CENTER)
-        SpinboxX.grid(row=4,column=6,pady=5)
+        Cvalues=[i for i in range(-20,21)]
+
+        ComboboxX = ttk.Combobox(self, width=5, values=Cvalues, justify=CENTER)
+        ComboboxX.set(0)
+        ComboboxX.grid(row=4,column=6,pady=5)
         
-        SpinboxY =tk.Spinbox(self, width=5, from_ = -20, to = 20, justify=CENTER)
-        SpinboxY.grid(row=4,column=7,pady=5)
+        ComboboxY = ttk.Combobox(self, width=5, values=Cvalues, justify=CENTER)
+        ComboboxY.set(0)
+        ComboboxY.grid(row=4,column=7,pady=5)
 
         def btnradio():
             print(ra.get())
-            print("X : %s\nY : %s" % (SpinboxX.get(),SpinboxY.get()))
+            print("X : %s\nY : %s" % (ComboboxX.get(),ComboboxY.get()))
             app.switch_frame(MainMenuUi)
 
         from main_menu_ui import MainMenuUi
