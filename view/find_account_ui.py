@@ -1,5 +1,9 @@
 from tkinter import *
 import tkinter as tk
+import validation
+from smtp import find_account
+import pymysql
+from tkinter import messagebox
 
 class FindAccountUi(tk.Frame) :
     def __init__(self, app):
@@ -16,9 +20,27 @@ class FindAccountUi(tk.Frame) :
 
         def print_fields():
             print("E-mail : %s" % (EmailEntry.get()))
-            app.switch_frame(LoginUi)
+
+            if validation.emailValidation(EmailEntry.get()) == True :
+                conn = pymysql.connect(host='localhost',
+                            user='root',
+                            password='123123',
+                            db='user',
+                            charset='utf8')
+
+                curs = conn.cursor()
+
+                sql = "SELECT * FROM user.users WHERE BINARY email=%s" # BINARY는 대소문자 구분
+
+                curs.execute(sql, EmailEntry.get())
+
+                if curs.fetchone():
+                    print("Successfully")
+                    find_account(EmailEntry.get())
+                    app.switch_frame(LoginUi)
+                else:
+                    print("Invalid Credentials")
+                    messagebox.showerror("이메일 입력 오류","존재하지 않는 이메일입니다.")
 
         from login_ui import LoginUi
         tk.Button(self, text="돌아가기",bg='#EAEAEA', font='함초롬돋움 11 bold',width=17,relief=FLAT,command=lambda: app.switch_frame(LoginUi)).grid(row=3,column=3,padx=20,columnspan=2,sticky="e")
-
-        

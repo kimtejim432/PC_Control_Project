@@ -3,6 +3,8 @@ import tkinter as tk
 from find_account_ui import FindAccountUi
 from create_account_ui import CreateAccountUi
 from focus_setting_ui import FocusSettingUi
+import pymysql
+from tkinter import messagebox
 
 class SampleApp(tk.Tk):
     def __init__(self):
@@ -38,7 +40,26 @@ class LoginUi(tk.Frame):
 
         def print_fields():
             print("ID : %s\nPW : %s" % (e1.get(),e2.get()))
-            app.switch_frame(FocusSettingUi)
+
+            conn = pymysql.connect(host='localhost',
+                            user='root',
+                            password='123123',
+                            db='user',
+                            charset='utf8')
+
+            curs = conn.cursor()
+
+            sql = "SELECT * FROM user.users WHERE BINARY id=%s AND BINARY password=%s" # BINARY는 대소문자 구분
+            data = (e1.get(), e2.get())
+
+            curs.execute(sql, data)
+
+            if curs.fetchone():
+                print("Successfully")
+                app.switch_frame(FocusSettingUi)
+            else:
+                print("Invalid Credentials")
+                messagebox.showerror("로그인 오류","아이디 또는 패스워드가 일치하지 않습니다.")
 
 if __name__ == "__main__":
     app = SampleApp()
