@@ -1,12 +1,17 @@
 import pymysql
 
-# 데이터베이스 값 전체 출력
-def showDB():
+# mysql 연결 객체 생성
+def sql_init():
     conn = pymysql.connect(host='localhost',
                         user='root',
                         password='123123',
                         db='user',
                         charset='utf8')
+    return conn
+
+# 데이터베이스 값 전체 출력
+def showDB():
+    conn = sql_init()
 
     curs = conn.cursor()
 
@@ -19,11 +24,7 @@ def showDB():
 
 # 사용자 수 출력
 def howmany():
-    conn = pymysql.connect(host='localhost',
-                        user='root',
-                        password='123123',
-                        db='user',
-                        charset='utf8')
+    conn = sql_init()
 
     curs = conn.cursor()
 
@@ -34,11 +35,7 @@ def howmany():
 
 # 데이터 삽입
 def insert(id, password, email):
-    conn = pymysql.connect(host='localhost',
-                        user='root',
-                        password='123123',
-                        db='user',
-                        charset='utf8')
+    conn = sql_init()
 
     curs = conn.cursor()
     
@@ -49,12 +46,7 @@ def insert(id, password, email):
 
 # 데이터 삭제 (회원탈퇴 시 사용)
 def delete(id):
-    conn = pymysql.connect(host='localhost',
-                        user='root',
-                        password='123123',
-                        db='user',
-                        charset='utf8')
-
+    conn = sql_init()
     curs = conn.cursor()
     
     sql = "DELETE FROM user.users WHERE id=%s"
@@ -63,12 +55,7 @@ def delete(id):
 
 # 학습완료 시 학습여부 업데이트
 def learning_complete(id):
-    conn = pymysql.connect(host='localhost',
-                        user='root',
-                        password='123123',
-                        db='user',
-                        charset='utf8')
-
+    conn = sql_init()
     curs = conn.cursor()
     
     sql = "UPDATE user.users SET learning=1 WHERE id=%s"
@@ -77,12 +64,7 @@ def learning_complete(id):
 
 # 언어 수정
 def language_update(language, id):
-    conn = pymysql.connect(host='localhost',
-                        user='root',
-                        password='123123',
-                        db='user',
-                        charset='utf8')
-
+    conn = sql_init()
     curs = conn.cursor()
     
     sql = "UPDATE user.users SET language=%s WHERE id=%s"
@@ -92,12 +74,7 @@ def language_update(language, id):
 
 # x, y 좌표 수정
 def coordinate_update(x, y, id):
-    conn = pymysql.connect(host='localhost',
-                        user='root',
-                        password='123123',
-                        db='user',
-                        charset='utf8')
-
+    conn = sql_init()
     curs = conn.cursor()
     
     sql = "UPDATE user.users SET x=%s, y=%s WHERE id=%s"

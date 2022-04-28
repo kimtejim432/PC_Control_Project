@@ -5,6 +5,7 @@ from create_account_ui import CreateAccountUi
 from focus_setting_ui import FocusSettingUi
 import pymysql
 from tkinter import messagebox
+import sqltool
 
 class SampleApp(tk.Tk):
     def __init__(self):
@@ -41,12 +42,7 @@ class LoginUi(tk.Frame):
         def print_fields():
             print("ID : %s\nPW : %s" % (e1.get(),e2.get()))
 
-            conn = pymysql.connect(host='localhost',
-                            user='root',
-                            password='123123',
-                            db='user',
-                            charset='utf8')
-
+            conn = sqltool.sql_init()
             curs = conn.cursor()
 
             sql = "SELECT * FROM user.users WHERE BINARY id=%s AND BINARY password=%s" # BINARY는 대소문자 구분
