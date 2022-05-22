@@ -1,10 +1,9 @@
 from tkinter import *
 import tkinter as tk
+from sqltool import sql_init
 import validation
 from smtp import find_account
-import pymysql
 from tkinter import messagebox
-import sqltool
 
 class FindAccountUi(tk.Frame) :
     def __init__(self, app):
@@ -23,7 +22,7 @@ class FindAccountUi(tk.Frame) :
             print("E-mail : %s" % (EmailEntry.get()))
 
             if validation.emailValidation(EmailEntry.get()) == True :
-                conn = sqltool.sql_init()
+                conn = sql_init()
                 curs = conn.cursor()
 
                 sql = "SELECT * FROM user.users WHERE BINARY email=%s" # BINARY는 대소문자 구분
@@ -33,6 +32,7 @@ class FindAccountUi(tk.Frame) :
                 if curs.fetchone():
                     print("Successfully")
                     find_account(EmailEntry.get())
+                    messagebox.showinfo("이메일 전송 완료","해당 이메일로 정보가 전송되었습니다.")
                     app.switch_frame(LoginUi)
                 else:
                     print("Invalid Credentials")

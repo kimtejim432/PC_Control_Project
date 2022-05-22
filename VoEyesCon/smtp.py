@@ -1,6 +1,13 @@
 def find_account(email):
     import smtplib
     from email.mime.text import MIMEText
+    import sqltool
+
+
+    sqltool.reset_password(email) # 비밀번호 초기화
+    id = sqltool.search_ID(email)
+    password = sqltool.search_PW(email)
+
 
     sender_id = 'ansrua45@gmail.com'
     sender_pw = 'jiehhplojdbzepbs'
@@ -15,7 +22,7 @@ def find_account(email):
 
     to = email
     title = "VoEyesCon [ID/PW 찾기]"
-    content = ["ID와 초기화된 PW를 전송합니다. \n"] # 여기에 + ID, 갱신된 PW 붙이면 될 듯
+    content = ["ID와 초기화된 PW를 전송합니다. \nID = %s \nPW = %s \n" %(id[0], password[0])]
 
     print('='*50)
     # 리스트로 받은 content를 \n로 조인하여 줄바꿈

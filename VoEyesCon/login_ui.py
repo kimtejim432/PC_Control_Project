@@ -3,9 +3,8 @@ import tkinter as tk
 from find_account_ui import FindAccountUi
 from create_account_ui import CreateAccountUi
 from focus_setting_ui import FocusSettingUi
-import pymysql
 from tkinter import messagebox
-import sqltool
+from sqltool import sql_init
 
 class SampleApp(tk.Tk):
     def __init__(self):
@@ -42,7 +41,7 @@ class LoginUi(tk.Frame):
         def print_fields():
             print("ID : %s\nPW : %s" % (e1.get(),e2.get()))
 
-            conn = sqltool.sql_init()
+            conn = sql_init()
             curs = conn.cursor()
 
             sql = "SELECT * FROM user.users WHERE BINARY id=%s AND BINARY password=%s" # BINARY는 대소문자 구분
@@ -52,6 +51,10 @@ class LoginUi(tk.Frame):
 
             if curs.fetchone():
                 print("Successfully")
+                
+                with open("VoEyesCon/FileSystem/id_file.txt", 'w') as file:
+                    file.write(e1.get())
+
                 app.switch_frame(FocusSettingUi)
             else:
                 print("Invalid Credentials")
