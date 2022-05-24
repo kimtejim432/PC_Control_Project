@@ -1,7 +1,5 @@
 from tkinter import *
 import tkinter as tk
-
-from calibration import Calibration
 import threading
 import time
 
@@ -22,18 +20,7 @@ class FocusSettingUi(tk.Frame):
         L = tk.Label(self, text=string, font="HY헤드라인M 15")
         L.grid(row=2,column=1,columnspan=2,pady=50,sticky="s")
 
-        tk.Button(self, font='함초롬돋움 11 bold',bg='#9ABAA3',text='예',width=15,relief=FLAT,command=lambda: caliMainMove()).grid(row=4,column=1,pady=45,padx=10)
+        tk.Button(self, font='함초롬돋움 11 bold',bg='#9ABAA3',text='예',width=15,relief=FLAT,command=lambda: app.switch_frame(MainMenuUi)).grid(row=4,column=1,pady=45,padx=10)
 
         from main_menu_ui import MainMenuUi
         tk.Button(self, text='아니오', font='함초롬돋움 11 bold',bg='#EAEAEA',width=15,relief=FLAT,command=lambda: app.switch_frame(MainMenuUi)).grid(row=4,column=2,pady=45,padx=10)
-
-        def caliMainMove():
-            cali = Calibration()
-            calibration_thread = threading.Thread(target=cali.caliExcusion, name='calibration_th2')
-            calibration_thread.daemon = True
-            calibration_thread.start()
-            time.sleep(1)
-
-            app.switch_frame(MainMenuUi)
-            
-    

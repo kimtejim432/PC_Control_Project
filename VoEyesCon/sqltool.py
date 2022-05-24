@@ -136,6 +136,16 @@ def reset_password(email):
     curs.execute(sql, data)
     conn.commit()
 
+# 회원정보 수정
+def update_userData(password, email, id):
+    conn = sql_init()
+    curs = conn.cursor()
+
+    sql = "UPDATE user.users SET password = %s, email = %s WHERE id = %s"
+    data = (password, email, id)
+    curs.execute(sql, data)
+    conn.commit()
+
 # ID 추출
 def search_ID(email):
     conn = sql_init()
@@ -167,45 +177,3 @@ def save_usersetting(language, x, y, id):
     data = (language, x, y, id)
     curs.execute(sql, data)
     conn.commit()
-
-# ID/PW 유효성 검사
-import re
-
-def pwdValidation(pwd):
-
-    if len(pwd) < 8:
-        print('비밀번호는 최소 8자 이상이어야 함')
-
-    elif re.search('[0-9]+', pwd) is None:
-        print('비밀번호는 최소 1개 이상의 숫자가 포함되어야 함')
-        return False
-
-    elif re.search('[a-zA-Z]+', pwd) is None:
-        print('비밀번호는 최소 1개 이상의 영문 대소문자가 포함되어야 함')
-        return False
-
-    elif re.search('[`~!@#$%^&*(),<.>/?;]+', pwd) is None:
-        print('비밀번호는 최소 1개 이상의 특수문자가 포함되어야 함')
-        return False
-
-    else :
-        print('비밀번호 기준에 적합합니다')
-        return True
-
-
-def idValidation(id):
-
-    if len(id) < 5:
-        print('아이디는 최소 5자 이상이어야 함')
-
-    elif re.search('[`~!@#$%^&*(),<.>/?;]+', id):
-        print('아이디에 특수문자를 포함시킬 수 없음')
-        return False
-
-    elif re.search('[a-zA-Z]+', id) is None:
-        print('아이디는 최소 1개 이상의 영문 대소문자가 포함되어야 함')
-        return False
-
-    else :
-        print('아이디 기준에 적합합니다')
-        return True

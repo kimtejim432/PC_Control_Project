@@ -27,11 +27,11 @@ class CreateAccountUi(tk.Frame):
 
         def print_fields():
             print("ID : %s\nPW : %s\nE-mail : %s" % (e1.get(),e2.get(),e3.get()))
-            if validation.passwordValidation(e2.get()) == True and validation.emailValidation(e3.get()) == True :
+            if validation.idValidation(e1.get()) == True and validation.passwordValidation(e2.get()) == True and validation.emailValidation(e3.get()) == True :
                 try :
                     sqltool.insert(e1.get(),e2.get(),e3.get())
                 except :
-                    messagebox.showinfo("회원가입 오류","중복된 ID 입니다.")
+                    messagebox.showerror("회원가입 오류","중복된 ID 또는 Email 입니다.")
                 else :
                     messagebox.showinfo("회원가입 성공","환영합니다.")
                     print('회원가입 완료')
