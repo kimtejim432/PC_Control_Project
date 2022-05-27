@@ -1,10 +1,10 @@
 from tkinter import *
 import tkinter as tk
-from find_account_ui import FindAccountUi
-from create_account_ui import CreateAccountUi
-from focus_setting_ui import FocusSettingUi
+from .find_account_ui import FindAccountUi
+from .create_account_ui import CreateAccountUi
+from .focus_setting_ui import FocusSettingUi
 from tkinter import messagebox
-from sqltool import sql_init
+from .sqltool import sql_init
 
 class SampleApp(tk.Tk):
     def __init__(self):
@@ -59,14 +59,5 @@ class LoginUi(tk.Frame):
             else:
                 print("Invalid Credentials")
                 messagebox.showerror("로그인 오류","아이디 또는 패스워드가 일치하지 않습니다.")
-
-if __name__ == "__main__":
-    app = SampleApp()
-    app.geometry("500x400")
-    app.title("VoEyes")
-    app.option_add("*Font","HY헤드라인M 14")
-    
-    app.resizable(width=False,height=False)
-    app.mainloop()
 
     

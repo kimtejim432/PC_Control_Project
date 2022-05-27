@@ -1,8 +1,8 @@
 from tkinter import *
 import tkinter as tk
-from sqltool import sql_init
-import validation
-from smtp import find_account
+from .sqltool import sql_init
+from .validation import emailValidation
+from .smtp import find_account
 from tkinter import messagebox
 
 class FindAccountUi(tk.Frame) :
@@ -21,7 +21,7 @@ class FindAccountUi(tk.Frame) :
         def print_fields():
             print("E-mail : %s" % (EmailEntry.get()))
 
-            if validation.emailValidation(EmailEntry.get()) == True :
+            if emailValidation(EmailEntry.get()) == True :
                 conn = sql_init()
                 curs = conn.cursor()
 
@@ -38,5 +38,5 @@ class FindAccountUi(tk.Frame) :
                     print("Invalid Credentials")
                     messagebox.showerror("이메일 입력 오류","존재하지 않는 이메일입니다.")
 
-        from login_ui import LoginUi
+        from .login_ui import LoginUi
         tk.Button(self, text="돌아가기",bg='#EAEAEA', font='함초롬돋움 11 bold',width=17,relief=FLAT,command=lambda: app.switch_frame(LoginUi)).grid(row=3,column=3,padx=20,columnspan=2,sticky="e")

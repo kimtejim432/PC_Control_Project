@@ -1,8 +1,8 @@
 from tkinter import *
 import tkinter as tk
 from tkinter import messagebox
-import validation
-import sqltool
+from .validation import *
+from .sqltool import insert
 
 class CreateAccountUi(tk.Frame):
     def __init__(self,app):
@@ -27,9 +27,9 @@ class CreateAccountUi(tk.Frame):
 
         def print_fields():
             print("ID : %s\nPW : %s\nE-mail : %s" % (e1.get(),e2.get(),e3.get()))
-            if validation.idValidation(e1.get()) == True and validation.passwordValidation(e2.get()) == True and validation.emailValidation(e3.get()) == True :
+            if idValidation(e1.get()) == True and passwordValidation(e2.get()) == True and emailValidation(e3.get()) == True :
                 try :
-                    sqltool.insert(e1.get(),e2.get(),e3.get())
+                    insert(e1.get(),e2.get(),e3.get())
                 except :
                     messagebox.showerror("회원가입 오류","중복된 ID 또는 Email 입니다.")
                 else :
@@ -40,5 +40,5 @@ class CreateAccountUi(tk.Frame):
                 pass
             
         tk.Button(self, font='함초롬돋움 12 bold',text='가입하기',bg="#9ABAA3",width=13,relief=FLAT,command=lambda:print_fields()).grid(row=10,column=2,padx=20,pady=40)
-        from login_ui import LoginUi
+        from .login_ui import LoginUi
         tk.Button(self, text='돌아가기',bg='#EAEAEA', font='함초롬돋움 12 bold',width=13,relief=FLAT,command=lambda: app.switch_frame(LoginUi)).grid(row=10,column=3,padx=30,pady=40)

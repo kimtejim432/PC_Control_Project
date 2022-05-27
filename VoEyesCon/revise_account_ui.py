@@ -1,9 +1,9 @@
 from tkinter import *
 import tkinter as tk
 from tkinter import messagebox
-from main_menu_ui import MainMenuUi
-import sqltool
-import validation
+from .main_menu_ui import MainMenuUi
+from .sqltool import update_userData
+from .validation import *
 
 class ReviseAccountUi(tk.Frame):
     def __init__(self,app):
@@ -23,11 +23,11 @@ class ReviseAccountUi(tk.Frame):
 
         def print_fields():
             print("PW : %s\nE-mail : %s" % (e2.get(),e3.get()))
-            if validation.passwordValidation(e2.get()) == True and validation.emailValidation(e3.get()) == True :
+            if passwordValidation(e2.get()) == True and emailValidation(e3.get()) == True :
                 try :
                     with open('VoEyesCon/id_file.txt', 'r') as file:
                         id = file.read()
-                    sqltool.update_userData(e2.get(), e3.get(), id)
+                    update_userData(e2.get(), e3.get(), id)
                 except :
                     messagebox.showerror("회원정보 수정 오류","이미 존재하는 이메일입니다.")
                 else :

@@ -22,5 +22,5 @@ class FocusSettingUi(tk.Frame):
 
         tk.Button(self, font='함초롬돋움 11 bold',bg='#9ABAA3',text='예',width=15,relief=FLAT,command=lambda: app.switch_frame(MainMenuUi)).grid(row=4,column=1,pady=45,padx=10)
 
-        from main_menu_ui import MainMenuUi
+        from .main_menu_ui import MainMenuUi
         tk.Button(self, text='아니오', font='함초롬돋움 11 bold',bg='#EAEAEA',width=15,relief=FLAT,command=lambda: app.switch_frame(MainMenuUi)).grid(row=4,column=2,pady=45,padx=10)

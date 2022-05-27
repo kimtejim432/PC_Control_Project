@@ -1,12 +1,12 @@
 def find_account(email):
     import smtplib
     from email.mime.text import MIMEText
-    import sqltool
+    from .sqltool import reset_password, search_ID, search_PW
 
 
-    sqltool.reset_password(email) # 비밀번호 초기화
-    id = sqltool.search_ID(email)
-    password = sqltool.search_PW(email)
+    reset_password(email) # 비밀번호 초기화
+    id = search_ID(email)
+    password = search_PW(email)
 
 
     sender_id = 'ansrua45@gmail.com'
