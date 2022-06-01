@@ -8,7 +8,7 @@ def find_account(email):
     id = search_ID(email)
     password = search_PW(email)
 
-
+    # 보내는이 정보
     sender_id = 'ansrua45@gmail.com'
     sender_pw = 'jiehhplojdbzepbs'
     smtp_server = "smtp.gmail.com"
@@ -21,6 +21,8 @@ def find_account(email):
         }
 
     to = email
+
+    # 제목과 내용
     title = "VoEyesCon [ID/PW 찾기]"
     content = ["ID와 초기화된 PW를 전송합니다. \nID = %s \nPW = %s \n" %(id[0], password[0])]
 
@@ -36,7 +38,7 @@ def find_account(email):
     smtp.ehlo # SMTP 식별
     smtp.starttls()  # TLS 보안 처리 (보안강화)
     smtp.login(sender_id , sender_pw)  # 로그인
-    smtp.sendmail(msg['From'], msg['To'], msg.as_string())
+    smtp.sendmail(msg['From'], msg['To'], msg.as_string())   # 전송
 
     smtp.quit()
     print('메일을 성공적으로 보냈습니다.')

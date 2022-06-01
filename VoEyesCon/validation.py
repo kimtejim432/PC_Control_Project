@@ -1,6 +1,7 @@
 from tkinter import messagebox
 import re
 
+#ID 유효성 검사, 아래 해당 조건 만족
 def idValidation(id):
 
     if len(id) < 5:
@@ -17,6 +18,7 @@ def idValidation(id):
     else :
         return True
 
+#PW 유효성 검사, 아래 해당 조건 만족
 def passwordValidation(pwd):
     if len(pwd) < 8 or len(pwd) > 20:
         messagebox.showerror("비밀번호 입력 오류","비밀번호를 8-20자 사이로 정해주세요.")
@@ -37,6 +39,7 @@ def passwordValidation(pwd):
     else :
         return True
 
+#E-mail 유효성 검사, 아래 해당 조건 만족
 def emailValidation(email):
     if re.search('^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$',email) is None:
         messagebox.showerror("이메일 입력 오류","올바른 형식으로 입력해주세요.")
