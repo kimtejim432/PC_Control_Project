@@ -18067,3 +18067,12 @@
 [32m01/06 20:21[0m [1;30mINFO[0m ------------------------------
 [32m01/06 20:21[0m [1;30mINFO[0m Restoring parameters from c:\Users\ktj\PC_Control_Project\VoEyesCon\pc_laptop_control\outputs/ELG_i60x36_f60x36_n32_m2/checkpoints/hourglass/model-211003
 [32m01/06 20:21[0m [1;30mINFO[0m Restoring parameters from c:\Users\ktj\PC_Control_Project\VoEyesCon\pc_laptop_control\outputs/ELG_i60x36_f60x36_n32_m2/checkpoints/radius/model-211003
+[32m03/06 20:14[0m [1;30mINFO[0m Built model for training.
+[32m03/06 20:14[0m [1;30mINFO[0m ------------------------------
+[32m03/06 20:14[0m [1;30mINFO[0m  Approximate Model Statistics 
+[32m03/06 20:14[0m [1;30mINFO[0m ------------------------------
+[32m03/06 20:14[0m [1;30mINFO[0m FLOPS per input: 205,323,382.5
+[32m03/06 20:14[0m [1;30mINFO[0m Trainable Parameters: 150,813
+[32m03/06 20:14[0m [1;30mINFO[0m ------------------------------
+[32m03/06 20:15[0m [1;30mINFO[0m Restoring parameters from c:\Users\ktj\PC_Control_Project\VoEyesCon\pc_laptop_control\outputs/ELG_i60x36_f60x36_n32_m2/checkpoints/hourglass/model-211003
+[32m03/06 20:15[0m [1;30mINFO[0m Restoring parameters from c:\Users\ktj\PC_Control_Project\VoEyesCon\pc_laptop_control\outputs/ELG_i60x36_f60x36_n32_m2/checkpoints/radius/model-211003

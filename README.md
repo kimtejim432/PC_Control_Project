@@ -43,7 +43,8 @@
     * coloredlogs  
     * cmake  
     * dlib  
-    * opencv-contrib-python  
+    * opencv-contrib-python
+    * pymysql 
     * pyaudio  
     * speechrecognition  
     * pyautogui  
