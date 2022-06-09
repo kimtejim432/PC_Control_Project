@@ -16,8 +16,6 @@ class PLC():
 
         self.debug_display_webcam = True
 
-        self.debug_execute_voice = True
-
         #############################################################################################
 
         self.monitor_size = None
@@ -44,6 +42,8 @@ class PLC():
 
         from .util.calibration import Calibration
         from .util.perfomance_test import Performance
+
+        from ...voice_mouse_control import voice_mouse_control
 
         import pyautogui # 주석
         import speech_recognition as sr
@@ -502,39 +502,12 @@ class PLC():
                                     # 가운데 원으로 표시 # 주석
                                     draw_gaze_point(bgr, gaze_mean, thickness=1)
                                     # util.mouse_control.mouse_move(gaze_mean) # 주석
-
-                                    def voice_mouse_control(): # 주석
-                                        x = gaze_mean[0] / 1280 * self.monitor_size[0]
-                                        y = gaze_mean[1] / 720 * self.monitor_size[1]
-
-                                        if x < 0: x = 0
-                                        if y < 0: y = 0
-                                        if x >= self.monitor_size[0]: x = self.monitor_size[0] - 1
-                                        if y >= self.monitor_size[1]: y = self.monitor_size[1] - 1
-                                        
-                                        pyautogui.moveTo(x, y)
-
-                                        if self.debug_execute_voice:
-                                            self.debug_execute_voice = False
-
-                                            with sr.Microphone() as source:
-                                                print("Say something!")
-                                                audio = self.recognition.listen(source)
-
-                                            try:
-                                                transcript = self.recognition.recognize_google(audio, language="ko-KR") # ko-KR, en-US
-                                            except sr.UnknownValueError:
-                                                print("당신이 한말을 이해하지 못하였습니다.")
-                                            except sr.RequestError as e:
-                                                print("당신이 한말을 불러올 수 없습니다.; {0}".format(e))
-                                            else:
-                                                if transcript in ['이중선택', '이중 선택']:
-                                                    pyautogui.doubleClick()
-                                                print("당신이 했던 말 : " + transcript)
-                                            finally:
-                                                self.debug_execute_voice = True
                                     
-                                    voice_mouse_control_thread = threading.Thread(target=voice_mouse_control, name='voice_mouse_control')
+                                    # 마우스 이동 및 음성명령 제어
+                                    def voice_mouse_control_():
+                                        voice_mouse_control(gaze_mean)
+                                    
+                                    voice_mouse_control_thread = threading.Thread(target=voice_mouse_control_, name='voice_mouse_control')
                                     voice_mouse_control_thread.daemon = True
                                     voice_mouse_control_thread.start()
 
@@ -741,3 +714,5 @@ class PLC():
                 video_out_queue.put_nowait(None)
                 with video_out_done:
                     video_out_done.wait()
+
+
